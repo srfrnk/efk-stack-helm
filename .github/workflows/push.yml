@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: helm template efk . > ./efk-manifests.yaml
+      - run: helm template -n efk efk . > ./efk-manifests.yaml
 
       - name: Create Release
         id: create_release
