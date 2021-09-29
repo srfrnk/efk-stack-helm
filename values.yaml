@@ -1,6 +1,10 @@
 rbac:
   enabled: true
 #--------------------------------------------------------
+initializer:
+  image: efk-stack-helm-initializer
+  imageVersion: latest
+
 kibana:
   name: kibana
   replicaCount: 1
@@ -13,7 +17,8 @@ kibana:
     port: 5601
   ingress:
     enabled: false
-    annotations: {}
+    annotations:
+      {}
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
     path: /

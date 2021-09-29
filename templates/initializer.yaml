@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: initializer
+spec:
+  template:
+    spec:
+      containers:
+        - name: initializer
+          image: {{ .Values.initializer.image }}:{{ .Values.initializer.imageVersion }}
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+      restartPolicy: OnFailure
+  parallelism: 1
+  completions: 1
+  backoffLimit: 100
