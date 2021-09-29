@@ -30,16 +30,20 @@ spec:
             - name: kibana-ui
               containerPort: 5601
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: kibana-ui
-            initialDelaySeconds: 45
           readinessProbe:
             httpGet:
               path: /
               port: kibana-ui
-            initialDelaySeconds: 40
+            initialDelaySeconds: 30
+            periodSeconds: 60
+          livenessProbe:
+            exec:
+              command:
+              - /bin/bash
+              - -c
+              - curl -s localhost:5601/api/status | grep '"overall":{"state":"green",'
+            initialDelaySeconds: 10
+            periodSeconds: 10
           resources:
 {{ toYaml .Values.kibana.resources | indent 12 }}
     {{- with .Values.kibana.nodeSelector }}
