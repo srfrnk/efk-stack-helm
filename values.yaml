@@ -10,7 +10,7 @@ kibana:
   replicaCount: 1
   image:
     repository: docker.elastic.co/kibana/kibana
-    tag: 6.2.4
+    tag: 7.15.0
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
@@ -42,7 +42,7 @@ elasticsearch:
   replicaCount: 1
   image:
     repository: docker.elastic.co/elasticsearch/elasticsearch
-    tag: 6.2.4
+    tag: 7.15.0
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
@@ -60,7 +60,7 @@ fluentdElasticsearch:
   name: fluentd-elasticsearch
   image:
     repository: k8s.gcr.io/fluentd-elasticsearch
-    tag: v2.1.0
+    tag: v2.4.0
     pullPolicy: IfNotPresent
   resources:
     limits:

@@ -80,6 +80,10 @@ spec:
           - name: {{ template "fullname.elasticsearch" . }}
             mountPath: /data
           env:
+          - name: "discovery.type"
+            value: "single-node"
+          - name: "xpack.security.enabled"
+            value: "false"
           - name: "NAMESPACE"
             valueFrom:
               fieldRef:

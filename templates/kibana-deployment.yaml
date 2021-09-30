@@ -24,7 +24,7 @@ spec:
           image: "{{ .Values.kibana.image.repository }}:{{ .Values.kibana.image.tag }}"
           imagePullPolicy: {{ .Values.kibana.image.pullPolicy }}
           env:
-            - name: ELASTICSEARCH_URL
+            - name: ELASTICSEARCH_HOSTS
               value: http://{{ .Release.Name }}-{{ .Values.elasticsearch.name }}:{{ .Values.elasticsearch.service.port }}
           ports:
             - name: kibana-ui
@@ -37,11 +37,9 @@ spec:
             initialDelaySeconds: 30
             periodSeconds: 60
           livenessProbe:
-            exec:
-              command:
-              - /bin/bash
-              - -c
-              - curl -s localhost:5601/api/status | grep '"overall":{"state":"green",'
+            httpGet:
+              path: /
+              port: kibana-ui
             initialDelaySeconds: 10
             periodSeconds: 10
           resources:
