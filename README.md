@@ -18,6 +18,14 @@ Install release version (see release [here](https://github.com/srfrnk/efk-stack-
 kubectl apply -n <NAMESPACE FOR EFK> -f https://github.com/srfrnk/efk-stack-helm/releases/download/<RELEASE>/efk-manifests-<RELEASE>.yaml
 ```
 
+You can also add the following to your setup script to wait for cluster to be ready:
+
+```bash
+kubectl wait -n <NAMESPACE FOR EFK> --for=condition=complete --timeout=300s job/initializer
+echo "Now you can run: kubectl port-forward -n <NAMESPACE FOR EFK> svc/efk-kibana 5601"
+echo "Then you can view in browser: open http://localhost:5601/app/discover"
+```
+
 ## Development
 
 1. Clone repo
