@@ -34,14 +34,14 @@ spec:
             httpGet:
               path: /
               port: kibana-ui
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 60
           livenessProbe:
             httpGet:
               path: /
               port: kibana-ui
-            initialDelaySeconds: 10
-            periodSeconds: 10
+            initialDelaySeconds: 60
+            periodSeconds: 30
           resources:
 {{ toYaml .Values.kibana.resources | indent 12 }}
     {{- with .Values.kibana.nodeSelector }}
