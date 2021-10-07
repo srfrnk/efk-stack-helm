@@ -61,8 +61,6 @@ spec:
       labels:
         app: {{ template "name.fluentdElasticsearch" . }}
         release: {{ .Release.Name }}
-      annotations:
-        scheduler.alpha.kubernetes.io/critical-pod: ''
     spec:
       priorityClassName: system-node-critical
       serviceAccountName: {{ template "fullname.fluentdElasticsearch" . }}
