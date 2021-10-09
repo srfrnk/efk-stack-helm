@@ -118,6 +118,8 @@ data:
       time_format %Y-%m-%dT%H:%M:%S.%NZ
       tag raw.kubernetes.*
       read_from_head true
+      enable_watch_timer false
+      enable_stat_watcher true
       <parse>
         @type multi_format
         <pattern>
@@ -367,7 +369,7 @@ data:
       read_from_head true
       tag node-problem-detector
     </source>
-    
+
     <source>
       @id kernel
       @type systemd
