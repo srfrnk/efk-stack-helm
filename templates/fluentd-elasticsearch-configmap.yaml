@@ -118,8 +118,8 @@ data:
       time_format %Y-%m-%dT%H:%M:%S.%NZ
       tag raw.kubernetes.*
       read_from_head true
-      enable_watch_timer false
       enable_stat_watcher true
+      refresh_interval 1s
       <parse>
         @type multi_format
         <pattern>
