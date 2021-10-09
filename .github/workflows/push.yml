@@ -55,7 +55,6 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
       - run: helm template -n efk efk . --set-string initializer.image=${{env.IMAGE_NAME}},initializer.imageVersion=${{env.VERSION}}.${{env.BUILD_NUMBER}} > ./efk-manifests.yaml
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -75,5 +74,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./efk-manifests.yaml
-          asset_name: efk-manifests-${{env.VERSION}}.${{env.BUILD_NUMBER}}.yaml
+          asset_name: efk-manifests.yaml
           asset_content_type: text/yaml
