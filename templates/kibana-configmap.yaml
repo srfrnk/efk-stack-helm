@@ -1,0 +1,15 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ template "fullname.kibana" . }}-config
+  labels:
+    app: {{ template "name.kibana" . }}
+    release: {{ .Release.Name }}
+data:
+  kibana.yml: |-
+    server.host: "0"
+    server.shutdownTimeout: "5s"
+    uiSettings:
+      overrides:
+        "theme:darkMode": true
+        "truncate:maxHeight": 1000

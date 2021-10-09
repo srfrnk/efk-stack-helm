@@ -30,6 +30,9 @@ spec:
             - name: kibana-ui
               containerPort: 5601
               protocol: TCP
+          volumeMounts:
+          - name: {{ template "fullname.kibana" . }}
+            mountPath: /usr/share/kibana/config
           readinessProbe:
             httpGet:
               path: /
@@ -44,6 +47,10 @@ spec:
             periodSeconds: 30
           resources:
 {{ toYaml .Values.kibana.resources | indent 12 }}
+      volumes:
+      - name: {{ template "fullname.kibana" . }}
+        configMap:
+          name: {{ template "fullname.kibana" . }}-config
     {{- with .Values.kibana.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
@@ -56,6 +63,3 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
-
-
-
