@@ -31,8 +31,10 @@ kibana:
   resources:
     limits:
       cpu: 1000m
+      memory: 1Gi
     requests:
       cpu: 100m
+      memory: 500Mi
   nodeSelector: {}
   tolerations: []
   affinity: {}
@@ -50,8 +52,10 @@ elasticsearch:
   resources:
     limits:
       cpu: 1000m
+      memory: 1Gi
     requests:
       cpu: 100m
+      memory: 500Mi
   nodeSelector: {}
   tolerations: []
   affinity: {}
