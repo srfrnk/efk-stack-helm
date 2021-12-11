@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add curl
+RUN apk add --update curl
 
 COPY ./initializer.sh ./initializer.sh
 
